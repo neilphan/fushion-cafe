@@ -1,0 +1,1222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fushion Café — Asian Fusion, 100% Plant-Based</title>
+<meta name="description" content="Fushion Café — bold Asian fusion street bites, 100% plant-based. Small plates, bowls, noodles, and sips made from the ground up.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,340;0,9..144,440;0,9..144,560;0,9..144,650;1,9..144,400;1,9..144,500&family=Work+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --cream:#F4EEE1;
+    --paper:#FBF8F1;
+    --sand:#E4D5B7;
+    --wood:#C99A5B;
+    --wood-deep:#A9773A;
+    --sage:#7E9468;
+    --sage-deep:#49573B;
+    --teal:#3E6360;
+    --ink:#211F19;
+    --charcoal:#25251E;
+    --black:#151410;
+    --gold:#BC9448;
+    --gold-light:#E3C687;
+    --line: rgba(33,31,25,.14);
+    --line-light: rgba(244,238,225,.2);
+
+    --f-display:'Fraunces', serif;
+    --f-body:'Work Sans', sans-serif;
+    --f-mono:'IBM Plex Mono', monospace;
+
+    --container: 1240px;
+    --edge: clamp(20px, 5vw, 64px);
+  }
+
+  *,*::before,*::after{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    *{ animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; scroll-behavior:auto !important; }
+  }
+
+  body{
+    margin:0;
+    background:var(--cream);
+    color:var(--ink);
+    font-family:var(--f-body);
+    font-weight:400;
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+
+  img{ max-width:100%; display:block; }
+  a{ color:inherit; text-decoration:none; }
+  ul{ margin:0; padding:0; list-style:none; }
+  button{ font:inherit; cursor:pointer; }
+
+  ::selection{ background:var(--sage); color:var(--paper); }
+
+  :focus-visible{
+    outline:2px solid var(--gold);
+    outline-offset:3px;
+  }
+
+  .wrap{
+    max-width:var(--container);
+    margin:0 auto;
+    padding-left:var(--edge);
+    padding-right:var(--edge);
+  }
+
+  .eyebrow{
+    font-family:var(--f-mono);
+    font-size:12px;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+  }
+  .eyebrow .dot-enso{
+    width:14px; height:14px; flex:none;
+  }
+
+  h1,h2,h3{
+    font-family:var(--f-display);
+    font-weight:560;
+    margin:0;
+    letter-spacing:-0.01em;
+  }
+
+  .btn{
+    font-family:var(--f-mono);
+    font-size:12.5px;
+    letter-spacing:.09em;
+    text-transform:uppercase;
+    padding:15px 28px;
+    border-radius:2px;
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    border:1px solid transparent;
+    transition:transform .35s cubic-bezier(.2,.8,.2,1), background-color .3s, color .3s, border-color .3s;
+    white-space:nowrap;
+  }
+  .btn:hover{ transform:translateY(-2px); }
+  .btn-fill{
+    background:var(--gold);
+    color:var(--black);
+  }
+  .btn-fill:hover{ background:var(--gold-light); }
+  .btn-line{
+    border-color:currentColor;
+    color:inherit;
+  }
+  .btn-line:hover{ background:rgba(255,255,255,.08); }
+
+  /* ---------- Wood slat divider (signature structural device) ---------- */
+  .slats{
+    height:34px;
+    width:100%;
+    background-repeat:repeat-x;
+    background-size:22px 100%;
+  }
+  .slats-light{
+    background-image:repeating-linear-gradient(90deg, var(--wood-deep) 0 4px, transparent 4px 22px);
+    opacity:.55;
+  }
+  .slats-dark{
+    background-image:repeating-linear-gradient(90deg, var(--gold) 0 4px, transparent 4px 22px);
+    opacity:.4;
+  }
+
+  /* ---------- Nav ---------- */
+  .nav{
+    position:fixed;
+    top:0; left:0; right:0;
+    z-index:100;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:20px var(--edge);
+    transition:background-color .4s ease, padding .4s ease, box-shadow .4s ease, border-color .4s ease;
+    border-bottom:1px solid transparent;
+  }
+  .nav.solid{
+    background:rgba(244,238,225,.92);
+    backdrop-filter:blur(10px);
+    padding-top:13px; padding-bottom:13px;
+    border-bottom-color:var(--line);
+  }
+  .nav-brand{
+    display:flex; align-items:center; gap:10px;
+    font-family:var(--f-display);
+    font-style:italic;
+    font-weight:500;
+    font-size:20px;
+    color:var(--paper);
+    transition:color .4s ease;
+  }
+  .nav.solid .nav-brand{ color:var(--ink); }
+  .nav-brand svg{ width:30px; height:30px; }
+  .nav-brand .stroke-c{ stroke:var(--paper); transition:stroke .4s ease;}
+  .nav.solid .nav-brand .stroke-c{ stroke:var(--ink); }
+
+  .nav-links{
+    display:flex; align-items:center; gap:36px;
+    font-family:var(--f-mono);
+    font-size:12.5px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--paper);
+    transition:color .4s ease;
+  }
+  .nav.solid .nav-links{ color:var(--ink); }
+  .nav-links a{ position:relative; padding:4px 0; }
+  .nav-links a::after{
+    content:'';
+    position:absolute; left:0; bottom:-2px;
+    width:0; height:1px; background:currentColor;
+    transition:width .3s ease;
+  }
+  .nav-links a:hover::after{ width:100%; }
+  .nav-links .btn{ padding:10px 18px; }
+
+  .nav-toggle{
+    display:none;
+    background:none; border:0;
+    width:34px; height:26px;
+    position:relative;
+    z-index:210;
+  }
+  .nav-toggle span, .nav-toggle span::before, .nav-toggle span::after{
+    content:'';
+    position:absolute; left:0; right:0;
+    height:1.5px; background:var(--paper);
+    transition:all .35s ease;
+  }
+  .nav.solid .nav-toggle span, .nav.solid .nav-toggle span::before, .nav.solid .nav-toggle span::after{
+    background:var(--ink);
+  }
+  .nav-toggle span{ top:12px; }
+  .nav-toggle span::before{ top:-9px; }
+  .nav-toggle span::after{ top:9px; }
+  .nav-toggle.open span{ background:transparent; }
+  .nav-toggle.open span::before{ top:0; transform:rotate(45deg); background:var(--ink); }
+  .nav-toggle.open span::after{ top:0; transform:rotate(-45deg); background:var(--ink); }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    position:relative;
+    min-height:100svh;
+    display:flex;
+    align-items:flex-end;
+    overflow:hidden;
+    background:var(--black);
+  }
+  .hero-media{
+    position:absolute; inset:0;
+    width:100%; height:100%;
+    object-fit:cover;
+    object-position:center 38%;
+  }
+  .hero-overlay{
+    position:absolute; inset:0;
+    background:
+      linear-gradient(180deg, rgba(15,14,10,.55) 0%, rgba(15,14,10,.32) 32%, rgba(15,14,10,.55) 68%, rgba(15,14,10,.92) 100%);
+  }
+  .hero-inner{
+    position:relative;
+    z-index:2;
+    width:100%;
+    padding:0 var(--edge) 76px;
+    color:var(--paper);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    text-align:center;
+    gap:26px;
+  }
+  .hero-enso{
+    width:clamp(64px,9vw,96px);
+    height:clamp(64px,9vw,96px);
+  }
+  .hero-enso circle{
+    fill:none;
+    stroke:var(--gold-light);
+    stroke-width:5;
+    stroke-linecap:round;
+    stroke-dasharray:300;
+    stroke-dashoffset:300;
+    animation:draw-enso 2.1s 0.3s cubic-bezier(.3,.8,.2,1) forwards;
+  }
+  @keyframes draw-enso{ to{ stroke-dashoffset: 18; } }
+
+  .hero h1{
+    font-size:clamp(46px, 9.6vw, 118px);
+    font-style:italic;
+    font-weight:500;
+    line-height:.98;
+    color:var(--paper);
+  }
+  .hero .eyebrow{ color:var(--gold-light); }
+  .hero-sub{
+    max-width:520px;
+    font-size:clamp(15px,2vw,18px);
+    color:rgba(251,248,241,.86);
+    font-weight:300;
+  }
+  .hero-ctas{
+    display:flex; gap:16px; flex-wrap:wrap; justify-content:center;
+    margin-top:6px;
+  }
+  .hero-ctas .btn-line{ border-color:rgba(251,248,241,.5); color:var(--paper); }
+
+  .scroll-cue{
+    position:absolute;
+    right:var(--edge);
+    bottom:28px;
+    z-index:2;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    color:rgba(251,248,241,.75);
+    font-family:var(--f-mono);
+    font-size:11px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    writing-mode:vertical-rl;
+  }
+  .scroll-cue .line{
+    width:1px; height:46px;
+    background:linear-gradient(rgba(251,248,241,.9), transparent);
+    animation:cue-move 1.8s ease-in-out infinite;
+  }
+  @keyframes cue-move{ 0%,100%{ opacity:.3;} 50%{ opacity:1;} }
+
+  /* ---------- Section shell ---------- */
+  section{ position:relative; }
+  .section-pad{ padding:104px 0; }
+  .light-alt{ background:var(--paper); }
+  .dark{ background:var(--charcoal); color:var(--cream); }
+  .darker{ background:var(--black); color:var(--cream); }
+
+  .fade-up{
+    opacity:0;
+    transform:translateY(28px);
+    transition:opacity .9s cubic-bezier(.2,.7,.2,1), transform .9s cubic-bezier(.2,.7,.2,1);
+  }
+  .fade-up.in-view{ opacity:1; transform:translateY(0); }
+
+  /* ---------- Ethos section ---------- */
+  .ethos{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:56px;
+    align-items:center;
+  }
+  .ethos-media{
+    position:relative;
+    aspect-ratio:4/5;
+    max-width:460px;
+    margin:0 auto;
+    overflow:hidden;
+    border-radius:2px;
+  }
+  .ethos-media img{ width:100%; height:100%; object-fit:cover; }
+  .ethos-media::after{
+    content:'';
+    position:absolute; inset:0;
+    border:1px solid rgba(255,255,255,.35);
+    margin:14px;
+    pointer-events:none;
+  }
+  .ethos h2{
+    font-size:clamp(34px,4.6vw,54px);
+    font-style:italic;
+    margin:14px 0 22px;
+    color:var(--sage-deep);
+  }
+  .ethos p.lede{
+    font-size:17px;
+    max-width:52ch;
+    color:#3a382f;
+    font-weight:400;
+  }
+  .badges{
+    margin-top:38px;
+    display:grid;
+    grid-template-columns:1fr;
+    gap:26px;
+  }
+  .badge{
+    display:flex; gap:16px; align-items:flex-start;
+    padding-top:22px;
+    border-top:1px solid var(--line);
+  }
+  .badge svg{ width:30px; height:30px; flex:none; margin-top:2px; color:var(--wood-deep); }
+  .badge h3{
+    font-family:var(--f-mono);
+    font-size:12.5px;
+    letter-spacing:.09em;
+    text-transform:uppercase;
+    font-weight:500;
+    margin-bottom:6px;
+  }
+  .badge p{ margin:0; font-size:14.5px; color:#4d4b40; }
+
+  /* ---------- Founders section ---------- */
+  .founders{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:48px;
+    align-items:center;
+  }
+  .founders-media{
+    position:relative;
+    aspect-ratio:4/5;
+    max-width:420px;
+    margin:0 auto;
+    border-radius:2px;
+    background:var(--paper);
+    border:1px solid var(--line);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:22px;
+    padding:32px;
+    text-align:center;
+  }
+  .founders-media::before{
+    content:'';
+    position:absolute; inset:14px;
+    border:1px solid var(--line);
+    pointer-events:none;
+  }
+  .monogram{ width:clamp(120px,22vw,168px); height:auto; }
+  .monogram .ring{ fill:none; stroke:var(--wood-deep); stroke-width:1.4; }
+  .monogram text{
+    font-family:var(--f-display);
+    font-style:italic;
+    font-weight:500;
+    fill:var(--sage-deep);
+  }
+  .founders-media .fm-names{
+    font-family:var(--f-display);
+    font-style:italic;
+    font-size:19px;
+    color:var(--ink);
+  }
+  .founders-media .fm-role{
+    font-family:var(--f-mono);
+    font-size:11px;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:var(--wood-deep);
+  }
+  .founders h2{
+    font-size:clamp(34px,4.6vw,54px);
+    font-style:italic;
+    margin:14px 0 22px;
+    color:var(--sage-deep);
+  }
+  .founders p.lede{
+    font-size:17px;
+    max-width:54ch;
+    color:#3a382f;
+    font-weight:400;
+  }
+  .founders blockquote{
+    margin:28px 0 0;
+    padding-left:20px;
+    border-left:2px solid var(--wood-deep);
+    font-family:var(--f-display);
+    font-style:italic;
+    font-size:18px;
+    color:var(--sage-deep);
+  }
+  .founders blockquote cite{
+    display:block;
+    margin-top:10px;
+    font-family:var(--f-mono);
+    font-style:normal;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:#6b6858;
+  }
+  .founder-stats{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+    margin-top:38px;
+  }
+  .founder-stats div{
+    padding-top:18px;
+    border-top:1px solid var(--line);
+  }
+  .founder-stats .fs-num{
+    display:block;
+    font-family:var(--f-display);
+    font-style:italic;
+    font-size:clamp(26px,3vw,34px);
+    color:var(--wood-deep);
+    line-height:1;
+    margin-bottom:8px;
+  }
+  .founder-stats .fs-label{
+    font-family:var(--f-mono);
+    font-size:11px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    color:#5a5848;
+  }
+
+  /* ---------- Menu section ---------- */
+  .menu-head{
+    display:flex; flex-wrap:wrap;
+    justify-content:space-between;
+    align-items:flex-end;
+    gap:24px;
+    margin-bottom:20px;
+  }
+  .menu-head .eyebrow{ color:var(--gold-light); }
+  .menu-head h2{
+    font-size:clamp(36px,5vw,58px);
+    font-style:italic;
+    color:var(--cream);
+    margin-top:14px;
+  }
+  .menu-note{
+    font-family:var(--f-mono);
+    font-size:12px;
+    letter-spacing:.04em;
+    color:var(--sage);
+    max-width:280px;
+    line-height:1.6;
+  }
+
+  .menu-tabs{
+    display:flex;
+    gap:6px;
+    flex-wrap:wrap;
+    margin:52px 0 8px;
+    border-bottom:1px solid var(--line-light);
+    padding-bottom:0;
+  }
+  .menu-tab{
+    background:none; border:none;
+    color:rgba(244,238,225,.55);
+    font-family:var(--f-mono);
+    font-size:12.5px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    padding:12px 18px 16px;
+    position:relative;
+    transition:color .3s;
+  }
+  .menu-tab::after{
+    content:''; position:absolute; left:18px; right:18px; bottom:-1px; height:2px;
+    background:var(--gold); transform:scaleX(0); transition:transform .3s ease;
+    transform-origin:left;
+  }
+  .menu-tab.active{ color:var(--cream); }
+  .menu-tab.active::after{ transform:scaleX(1); }
+  .menu-tab:hover{ color:var(--cream); }
+
+  .menu-panel{ display:none; padding-top:38px; }
+  .menu-panel.active{ display:block; animation:panel-in .5s ease; }
+  @keyframes panel-in{ from{opacity:0; transform:translateY(8px);} to{opacity:1; transform:translateY(0);} }
+
+  .menu-grid{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:0 48px;
+  }
+  .menu-item{
+    display:flex;
+    justify-content:space-between;
+    gap:18px;
+    padding:22px 0;
+    border-bottom:1px solid var(--line-light);
+  }
+  .menu-item-name{
+    font-family:var(--f-display);
+    font-size:19px;
+    font-weight:500;
+    color:var(--cream);
+    display:flex; align-items:baseline; gap:10px; flex-wrap:wrap;
+  }
+  .tag{
+    font-family:var(--f-mono);
+    font-size:10px;
+    letter-spacing:.06em;
+    color:var(--black);
+    background:var(--sage);
+    padding:2px 7px;
+    border-radius:2px;
+    vertical-align:middle;
+  }
+  .tag.spice{ background:var(--gold); }
+  .menu-item-desc{
+    font-size:13.5px;
+    color:rgba(244,238,225,.62);
+    margin-top:6px;
+    max-width:46ch;
+  }
+  .menu-item-price{
+    font-family:var(--f-mono);
+    font-size:15px;
+    color:var(--gold-light);
+    flex:none;
+    padding-top:2px;
+  }
+
+  /* ---------- Gallery ---------- */
+  .gal-head{ margin-bottom:52px; }
+  .gal-head h2{
+    font-size:clamp(34px,4.6vw,54px);
+    font-style:italic;
+    color:var(--sage-deep);
+    margin-top:14px;
+  }
+  .gallery{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:16px;
+  }
+  .gallery figure{
+    margin:0; overflow:hidden; position:relative;
+    border-radius:2px;
+    background:var(--sand);
+  }
+  .gallery img{
+    width:100%; height:100%; object-fit:cover;
+    transition:transform .8s cubic-bezier(.2,.7,.2,1);
+  }
+  .gallery figure:hover img{ transform:scale(1.06); }
+  .gallery figcaption{
+    position:absolute; left:0; right:0; bottom:0;
+    padding:16px 18px;
+    font-family:var(--f-mono);
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:#fff;
+    background:linear-gradient(0deg, rgba(0,0,0,.55), transparent);
+  }
+  .g-a{ aspect-ratio:4/5; }
+  .g-b{ aspect-ratio:16/11; }
+  .g-c{ aspect-ratio:1/1; }
+  .g-d{ aspect-ratio:4/5; }
+  .g-e{ aspect-ratio:16/10; }
+
+  /* ---------- Visit / footer ---------- */
+  .visit{
+    display:grid;
+    grid-template-columns:1fr;
+  }
+  .visit-media{
+    position:relative;
+    min-height:340px;
+  }
+  .visit-media img{ width:100%; height:100%; object-fit:cover; position:absolute; inset:0; }
+  .visit-info{
+    padding:88px var(--edge);
+  }
+  .visit-info .eyebrow{ color:var(--gold-light); }
+  .visit-info h2{
+    font-size:clamp(34px,4.6vw,54px);
+    font-style:italic;
+    color:var(--cream);
+    margin:14px 0 34px;
+  }
+  .visit-cols{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:32px;
+    margin-bottom:40px;
+  }
+  .visit-cols h3{
+    font-family:var(--f-mono);
+    font-size:12px;
+    letter-spacing:.09em;
+    text-transform:uppercase;
+    color:var(--sage);
+    margin-bottom:10px;
+    font-weight:500;
+  }
+  .visit-cols p{ margin:0 0 4px; font-size:15px; color:rgba(244,238,225,.85); }
+  .visit-ctas{ display:flex; gap:16px; flex-wrap:wrap; }
+  .visit-ctas .btn-line{ border-color:rgba(244,238,225,.4); color:var(--cream); }
+
+  footer{
+    background:var(--black);
+    color:rgba(244,238,225,.6);
+    padding:56px var(--edge) 30px;
+  }
+  .foot-top{
+    display:flex; flex-wrap:wrap; gap:40px;
+    justify-content:space-between;
+    padding-bottom:40px;
+    border-bottom:1px solid rgba(244,238,225,.12);
+  }
+  .foot-brand{
+    display:flex; align-items:center; gap:10px;
+    font-family:var(--f-display); font-style:italic; font-size:22px;
+    color:var(--cream);
+  }
+  .foot-brand svg{ width:26px; height:26px; }
+  .foot-links{
+    display:flex; gap:48px; flex-wrap:wrap;
+  }
+  .foot-links div{ display:flex; flex-direction:column; gap:10px; }
+  .foot-links h4{
+    font-family:var(--f-mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase;
+    color:rgba(244,238,225,.4); margin:0 0 4px;
+  }
+  .foot-links a{ font-size:14px; transition:color .25s; }
+  .foot-links a:hover{ color:var(--gold-light); }
+  .foot-bottom{
+    display:flex; flex-wrap:wrap; justify-content:space-between; gap:14px;
+    padding-top:26px;
+    font-family:var(--f-mono);
+    font-size:11px;
+    letter-spacing:.04em;
+  }
+
+  /* ---------- Scroll progress enso (signature element) ---------- */
+  .progress-ring{
+    position:fixed;
+    right:22px; bottom:22px;
+    z-index:90;
+    width:54px; height:54px;
+    opacity:0;
+    transform:translateY(10px);
+    transition:opacity .4s ease, transform .4s ease;
+    pointer-events:none;
+  }
+  .progress-ring.show{ opacity:1; transform:translateY(0); pointer-events:auto; }
+  .progress-ring a{ display:block; width:100%; height:100%; }
+  .progress-ring svg{ width:100%; height:100%; }
+  .progress-ring .track{ fill:none; stroke:rgba(33,31,25,.15); stroke-width:4; }
+  .progress-ring .bar{
+    fill:none; stroke:var(--gold-light); stroke-width:4; stroke-linecap:round;
+    stroke-dasharray:150.8; stroke-dashoffset:150.8;
+    transform:rotate(-90deg); transform-origin:50% 50%;
+    transition:stroke-dashoffset .1s linear;
+    filter:drop-shadow(0 0 4px rgba(0,0,0,.5));
+  }
+  .progress-ring circle.bg{ fill:var(--charcoal); }
+
+  /* ---------- Responsive ---------- */
+  @media (min-width:640px){
+    .badges{ grid-template-columns:1fr 1fr; }
+    .visit-cols{ grid-template-columns:1fr 1fr 1fr; }
+    .menu-grid{ grid-template-columns:1fr 1fr; }
+  }
+
+  @media (min-width:900px){
+    .founders{ grid-template-columns:1fr 0.8fr; gap:80px; }
+    .founders-media{ order:2; margin:0; }
+  }
+
+  @media (min-width:760px){
+    .gallery{
+      grid-template-columns:repeat(6,1fr);
+      grid-auto-rows:120px;
+    }
+    .g-a{ grid-column:span 3; grid-row:span 3; }
+    .g-b{ grid-column:span 3; grid-row:span 2; }
+    .g-c{ grid-column:span 3; grid-row:span 2; }
+    .g-d{ grid-column:span 2; grid-row:span 2; }
+    .g-e{ grid-column:span 4; grid-row:span 2; }
+    .g-a, .g-d { aspect-ratio:auto; }
+    .g-b, .g-c, .g-e { aspect-ratio:auto; }
+  }
+
+  @media (min-width:900px){
+    .nav-toggle{ display:none; }
+    .ethos{ grid-template-columns:0.85fr 1fr; gap:80px; }
+    .ethos-media{ margin:0; }
+    .visit{ grid-template-columns:1fr 1fr; }
+    .visit-media{ min-height:100%; }
+  }
+
+  @media (max-width:899px){
+    .nav-links{
+      position:fixed; inset:0 0 0 auto;
+      width:min(78vw,340px);
+      background:var(--charcoal);
+      color:var(--cream);
+      flex-direction:column;
+      align-items:flex-start;
+      justify-content:center;
+      gap:30px;
+      padding:40px var(--edge);
+      transform:translateX(100%);
+      transition:transform .45s cubic-bezier(.2,.8,.2,1);
+      z-index:200;
+    }
+    .nav-links.open{ transform:translateX(0); }
+    .nav-links a{ font-size:15px; }
+    .nav-links .btn{ margin-top:10px; }
+    .nav-toggle{ display:block; }
+    .nav-scrim{
+      position:fixed; inset:0; background:rgba(0,0,0,.4);
+      opacity:0; pointer-events:none; transition:opacity .4s ease;
+      z-index:190;
+    }
+    .nav-scrim.show{ opacity:1; pointer-events:auto; }
+  }
+
+  @media (min-width:1180px){
+    .section-pad{ padding:140px 0; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ================= NAV ================= -->
+<div class="nav-scrim" id="scrim"></div>
+<nav class="nav" id="siteNav">
+  <a href="#top" class="nav-brand" aria-label="Fushion Café home">
+    <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path class="stroke-c" d="M20 4 C29 4 36 11 36 20 C36 27 31 33 24 35" stroke-width="2.6" stroke-linecap="round"/>
+      <path class="stroke-c" d="M20 36 C11 36 4 29 4 20 C4 12 9.5 6 17 4.6" stroke-width="2.6" stroke-linecap="round"/>
+    </svg>
+    Fushion Café
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#ethos">Our Ethos</a></li>
+    <li><a href="#founders">Our Story</a></li>
+    <li><a href="#menu">Menu</a></li>
+    <li><a href="#gallery">Inside</a></li>
+    <li><a href="#visit">Visit</a></li>
+    <li><a href="#visit" class="btn btn-fill">Order Online</a></li>
+  </ul>
+  <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false"><span></span></button>
+</nav>
+
+<!-- ================= HERO ================= -->
+<header class="hero" id="top">
+  <video class="hero-media" autoplay muted loop playsinline poster="assets/img/crop-entrance.jpg">
+    <source src="assets/video/render-2.mp4" type="video/mp4">
+  </video>
+  <div class="hero-overlay"></div>
+  <div class="hero-inner">
+    <svg class="hero-enso" viewBox="0 0 100 100" aria-hidden="true">
+      <circle cx="50" cy="50" r="42" transform="rotate(-40 50 50)"/>
+    </svg>
+    <span class="eyebrow"><svg class="dot-enso" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="5.5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>Asian Fusion &nbsp;·&nbsp; 100% Plant-Based</span>
+    <h1>Fushion&nbsp;Café</h1>
+    <p class="hero-sub">Bold street-food flavors from across Asia, built entirely from plants — wok-fired, hand-folded, and never a single animal product in sight.</p>
+    <div class="hero-ctas">
+      <a href="#menu" class="btn btn-fill">View Menu</a>
+      <a href="#visit" class="btn btn-line">Order Online</a>
+    </div>
+  </div>
+  <div class="scroll-cue"><span class="line"></span>Scroll</div>
+</header>
+
+<main>
+<!-- ================= ETHOS ================= -->
+<section class="section-pad light-alt" id="ethos">
+  <div class="wrap ethos">
+    <div class="ethos-media fade-up">
+      <img src="assets/img/crop-tableware.jpg" alt="Handmade ceramic bowls, a brass carafe, and a potted cactus on a wood table at Fushion Café" loading="lazy">
+    </div>
+    <div class="fade-up">
+      <span class="eyebrow" style="color:var(--wood-deep)"><svg class="dot-enso" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="5.5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>Our Ethos</span>
+      <h2>Rooted in flavor,<br>not in animals.</h2>
+      <p class="lede">Fushion Café began with one question: why should plant-based food play it safe? We take the char of a Korean grill, the depth of a Vietnamese broth, and the punch of Thai chili — and rebuild every one of them from vegetables, grains, and legumes. No substitutes standing in for the "real thing." This is the real thing.</p>
+
+      <div class="badges">
+        <div class="badge">
+          <svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M16 28c7-4 11-9.5 11-15.5C27 7 22.5 3 17 5c-1 .4-1 .8-1 1.5V28Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M16 28C9 24 5 18.5 5 12.5 5 7 9.5 3 15 5c1 .4 1 .8 1 1.5V28Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+          <div>
+            <h3>100% Plant-Based</h3>
+            <p>Every dish, sauce, and broth on the menu — zero animal products, always.</p>
+          </div>
+        </div>
+        <div class="badge">
+          <svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><circle cx="16" cy="16" r="11" stroke="currentColor" stroke-width="1.6"/><path d="M16 9v7l5 3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <div>
+            <h3>Cooked to Order</h3>
+            <p>Wok-fired street-food style, plated within minutes of your order — never frozen, never steam-tabled.</p>
+          </div>
+        </div>
+        <div class="badge">
+          <svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M16 4c4 4 6 8 6 12a6 6 0 1 1-12 0c0-4 2-8 6-12Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M16 28v-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          <div>
+            <h3>Regionally Sourced</h3>
+            <p>Seasonal produce from growers within a day's drive, folded into recipes that change with the harvest.</p>
+          </div>
+        </div>
+        <div class="badge">
+          <svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M6 26 26 6M11 6h9v9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <div>
+            <h3>Bold, Not Shy</h3>
+            <p>Chili, citrus, char, and umami built from mushroom, miso, and fermented chili — flavor first.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOUNDERS ================= -->
+<section class="section-pad" id="founders">
+  <div class="wrap founders">
+    <div class="fade-up">
+      <span class="eyebrow" style="color:var(--wood-deep)"><svg class="dot-enso" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="5.5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>Our Story</span>
+      <h2>Two high school sweethearts,<br>one American dream.</h2>
+      <p class="lede">Hung Dinh and Van Le fell for each other back in high school, then set out together to build a new life in Houston, Texas. Somewhere along the way, home cooking became a second language — 100% plant-based, out of both love and conviction. After more than fifteen years perfecting recipes at their own table, they opened Fushion Café to bring that same food, and that same welcome, to the rest of the city.</p>
+
+      <blockquote>
+        "We wanted more people to see that plant-based food could still taste like home."
+        <cite>— Hung &amp; Van, Founders</cite>
+      </blockquote>
+
+      <div class="founder-stats">
+        <div>
+          <span class="fs-num">15+</span>
+          <span class="fs-label">Years Plant-Based Cooking</span>
+        </div>
+        <div>
+          <span class="fs-num">2</span>
+          <span class="fs-label">Immigrants Turned Houstonians</span>
+        </div>
+        <div>
+          <span class="fs-num">1</span>
+          <span class="fs-label">Love Story, Since High School</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="founders-media fade-up">
+      <svg class="monogram" viewBox="0 0 160 120" aria-hidden="true">
+        <circle class="ring" cx="66" cy="60" r="46"/>
+        <circle class="ring" cx="98" cy="60" r="46"/>
+        <text x="52" y="68" font-size="30" text-anchor="middle">H</text>
+        <text x="112" y="68" font-size="30" text-anchor="middle">V</text>
+      </svg>
+      <div>
+        <div class="fm-names">Hung Dinh &amp; Van Le</div>
+        <div class="fm-role">Founders, Fushion Café</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="slats slats-light"></div>
+
+<!-- ================= MENU ================= -->
+<section class="section-pad dark" id="menu">
+  <div class="wrap">
+    <div class="menu-head fade-up">
+      <div>
+        <span class="eyebrow"><svg class="dot-enso" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="5.5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>The Menu</span>
+        <h2>Street bites,<br>reimagined.</h2>
+      </div>
+      <p class="menu-note">Every item below is 100% plant-based. GF marks gluten-free, and the chili marks our spicier plates — ask your server to adjust the heat.</p>
+    </div>
+
+    <div class="menu-tabs" role="tablist" aria-label="Menu categories">
+      <button class="menu-tab active" data-panel="small" role="tab" aria-selected="true">Small Plates</button>
+      <button class="menu-tab" data-panel="bowls" role="tab" aria-selected="false">Bowls &amp; Noodles</button>
+      <button class="menu-tab" data-panel="sips" role="tab" aria-selected="false">Sips</button>
+      <button class="menu-tab" data-panel="sweet" role="tab" aria-selected="false">Sweet</button>
+    </div>
+
+    <div class="menu-panel active" id="panel-small">
+      <div class="menu-grid">
+        <div class="menu-item">
+          <div>
+            <div class="menu-item-name">Charred Miso Eggplant <span class="tag">GF</span></div>
+            <p class="menu-item-desc">Smoke-blistered eggplant, scallion oil, toasted sesame, chili threads.</p>
+          </div>
+          <div class="menu-item-price">$9</div>
+        </div>
+        <div class="menu-item">
+          <div>
+            <div class="menu-item-name">Crispy Cauliflower Bao</div>
+            <p class="menu-item-desc">Steamed bun, gochujang glaze, quick-pickled daikon, herbs.</p>
+          </div>
+          <div class="menu-item-price">$11</div>
+        </div>
+        <div class="menu-item">
+          <div>
+            <div class="menu-item-name">Chili-Lime Tofu Skewers <span class="tag spice">Spicy</span></div>
+            <p class="menu-item-desc">Pressed tofu, tamarind glaze, crushed peanut, lime leaf.</p>
+          </div>
+          <div class="menu-item-price">$10</div>
+        </div>
+        <div class="menu-item">
+          <div>
+            <div class="menu-item-name">Golden Spring Rolls <span class="tag">GF</span></div>
+            <p class="menu-item-desc">Jicama, carrot, Thai basil, sweet chili nuoc cham.</p>
+          </div>
+          <div class="menu-item-price">$8</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-panel" id="panel-bowls">
+      <div class="menu-grid">
+        <div class="menu-item">
+          <div>
+            <div class="menu-item-name">Smoky Jackfruit Bulgogi Bowl <span class="tag">GF</span></div>
+            <p class="menu-item-desc">Pulled jackfruit, jasmine rice, house kimchi, toasted sesame.</p>
+          </div>
+          <div class="menu-item-price">$16</div>
+        </div>
+        <div class="menu-item">
+          <div>
+            <div class="menu-item-name">Coconut Turmeric Ramen <span class="tag spice">Spicy</span></div>
+            <p class="menu-item-desc">Slow-built broth, shiitake, bok choy, chili crisp, scallion oil.</p>
+          </div>
+          <div class="menu-item-price">$15</div>
+        </div>
+        <div class="menu-item">
+          <div>
+            <div class="menu-item-name">Sesame Soba Salad</div>
+            <p class="menu-item-desc">Chilled soba, edamame, carrot ribbon, black sesame dressing.</p>
+          </div>
+          <div class="menu-item-price">$14</div>
+        </div>
+        <div class="menu-item">
+          <div>
+            <div class="menu-item-name">Drunken Basil Noodles <span class="tag spice">Spicy</span></div>
+            <p class="menu-item-desc">Wide rice noodles, Thai basil, charred pepper, garlic crisp.</p>
+          </div>
+          <div class="menu-item-price">$15</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-panel" id="panel-sips">
+      <div class="menu-grid">
+        <div class="menu-item">
+          <div><div class="menu-item-name">Iced Yuzu Green Tea</div></div>
+          <div class="menu-item-price">$5</div>
+        </div>
+        <div class="menu-item">
+          <div><div class="menu-item-name">Ube Coconut Latte</div></div>
+          <div class="menu-item-price">$6</div>
+        </div>
+        <div class="menu-item">
+          <div><div class="menu-item-name">Ginger Lemongrass Fizz</div></div>
+          <div class="menu-item-price">$5</div>
+        </div>
+        <div class="menu-item">
+          <div><div class="menu-item-name">Jasmine Cold Brew</div></div>
+          <div class="menu-item-price">$5</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-panel" id="panel-sweet">
+      <div class="menu-grid">
+        <div class="menu-item">
+          <div>
+            <div class="menu-item-name">Mango Sticky Rice <span class="tag">GF</span></div>
+            <p class="menu-item-desc">Coconut sticky rice, ripe mango, toasted mung bean.</p>
+          </div>
+          <div class="menu-item-price">$7</div>
+        </div>
+        <div class="menu-item">
+          <div>
+            <div class="menu-item-name">Matcha Cream Puffs</div>
+            <p class="menu-item-desc">Choux pastry, coconut matcha cream, black sesame dust.</p>
+          </div>
+          <div class="menu-item-price">$6</div>
+        </div>
+        <div class="menu-item">
+          <div>
+            <div class="menu-item-name">Black Sesame Soft Serve <span class="tag">GF</span></div>
+            <p class="menu-item-desc">House-churned, brown sugar crumble, sea salt.</p>
+          </div>
+          <div class="menu-item-price">$6</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="slats slats-dark" style="background-color:var(--charcoal)"></div>
+
+<!-- ================= GALLERY ================= -->
+<section class="section-pad light-alt" id="gallery">
+  <div class="wrap">
+    <div class="gal-head fade-up">
+      <span class="eyebrow" style="color:var(--wood-deep)"><svg class="dot-enso" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="5.5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>Inside Fushion</span>
+      <h2>A space built slow,<br>meant to linger.</h2>
+    </div>
+    <div class="gallery fade-up">
+      <figure class="g-a"><img src="assets/img/crop-entrance.jpg" alt="Etched glass entrance reading Fusion Café, with the ensō medallion above the host stand" loading="lazy"><figcaption>The Entrance</figcaption></figure>
+      <figure class="g-b"><img src="assets/img/crop-window-dining.jpg" alt="Bright window-side dining room with rattan pendant lights and potted plants" loading="lazy"><figcaption>Window Seating</figcaption></figure>
+      <figure class="g-c"><img src="assets/img/crop-shrine-wall.jpg" alt="Wood lattice display wall with hanging plants surrounding the circular ensō sign" loading="lazy"><figcaption>The Living Wall</figcaption></figure>
+      <figure class="g-d"><img src="assets/img/crop-happyhour-main.jpg" alt="Sage green banquette seating beside a marble bar at golden hour" loading="lazy"><figcaption>Daytime Bar</figcaption></figure>
+      <figure class="g-e"><img src="assets/img/crop-bar-main.jpg" alt="Moody evening bar scene with pendant lighting and the ensō medallion" loading="lazy"><figcaption>Evening Hours</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- ================= VISIT ================= -->
+<section class="darker" id="visit">
+  <div class="visit">
+    <div class="visit-media fade-up">
+      <img src="assets/img/storefront.jpg" alt="Fushion Café storefront at night, illuminated sign and bamboo planters at the entrance" loading="lazy">
+    </div>
+    <div class="visit-info fade-up">
+      <span class="eyebrow"><svg class="dot-enso" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="5.5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>Visit</span>
+      <h2>Come sit<br>with us.</h2>
+
+      <div class="visit-cols">
+        <div>
+          <h3>Address</h3>
+          <p>123 Fusion Lane<br>Houston, TX 77002</p>
+        </div>
+        <div>
+          <h3>Hours</h3>
+          <p>Mon – Thu&nbsp; 11a – 9p<br>Fri – Sat&nbsp; 11a – 10p<br>Sun&nbsp; 12p – 8p</p>
+        </div>
+        <div>
+          <h3>Contact</h3>
+          <p>(713) 555-0142<br>hello@fushioncafe.com</p>
+        </div>
+      </div>
+
+      <div class="visit-ctas">
+        <a href="#" class="btn btn-fill">Order Online</a>
+        <a href="#" class="btn btn-line">Get Directions</a>
+        <a href="#" class="btn btn-line">Reserve a Table</a>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="foot-top">
+    <a href="#top" class="foot-brand">
+      <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M20 4 C29 4 36 11 36 20 C36 27 31 33 24 35" stroke="var(--cream)" stroke-width="2.4" stroke-linecap="round"/>
+        <path d="M20 36 C11 36 4 29 4 20 C4 12 9.5 6 17 4.6" stroke="var(--cream)" stroke-width="2.4" stroke-linecap="round"/>
+      </svg>
+      Fushion Café
+    </a>
+    <div class="foot-links">
+      <div>
+        <h4>Explore</h4>
+        <a href="#ethos">Our Ethos</a>
+        <a href="#founders">Our Story</a>
+        <a href="#menu">Menu</a>
+        <a href="#gallery">Inside</a>
+        <a href="#visit">Visit</a>
+      </div>
+      <div>
+        <h4>Connect</h4>
+        <a href="#">Instagram</a>
+        <a href="#">Facebook</a>
+        <a href="#">hello@fushioncafe.com</a>
+      </div>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <span>© 2026 Fushion Café. All plants, no compromises.</span>
+    <span>Asian Fusion · 100% Plant-Based</span>
+  </div>
+</footer>
+
+<!-- Scroll progress enso -->
+<div class="progress-ring" id="progressRing">
+  <a href="#top" aria-label="Back to top">
+    <svg viewBox="0 0 54 54">
+      <circle class="bg" cx="27" cy="27" r="26"></circle>
+      <circle class="track" cx="27" cy="27" r="24"></circle>
+      <circle class="bar" id="progressBar" cx="27" cy="27" r="24"></circle>
+    </svg>
+  </a>
+</div>
+
+<script>
+(function(){
+  // Nav solid on scroll
+  var nav = document.getElementById('siteNav');
+  var ring = document.getElementById('progressRing');
+  var bar = document.getElementById('progressBar');
+  var circumference = 2 * Math.PI * 24;
+
+  function onScroll(){
+    var y = window.scrollY || document.documentElement.scrollTop;
+    nav.classList.toggle('solid', y > 60);
+
+    var doc = document.documentElement;
+    var max = doc.scrollHeight - doc.clientHeight;
+    var pct = max > 0 ? Math.min(1, y / max) : 0;
+    bar.style.strokeDashoffset = circumference * (1 - pct);
+    ring.classList.toggle('show', y > 400);
+  }
+  document.addEventListener('scroll', onScroll, { passive:true });
+  onScroll();
+
+  // Mobile nav toggle
+  var toggle = document.getElementById('navToggle');
+  var links = document.getElementById('navLinks');
+  var scrim = document.getElementById('scrim');
+  function closeNav(){
+    toggle.classList.remove('open');
+    links.classList.remove('open');
+    scrim.classList.remove('show');
+    toggle.setAttribute('aria-expanded','false');
+  }
+  toggle.addEventListener('click', function(){
+    var isOpen = links.classList.toggle('open');
+    toggle.classList.toggle('open', isOpen);
+    scrim.classList.toggle('show', isOpen);
+    toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  });
+  scrim.addEventListener('click', closeNav);
+  links.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', closeNav); });
+
+  // Menu tabs
+  var tabs = document.querySelectorAll('.menu-tab');
+  var panels = document.querySelectorAll('.menu-panel');
+  tabs.forEach(function(tab){
+    tab.addEventListener('click', function(){
+      tabs.forEach(function(t){ t.classList.remove('active'); t.setAttribute('aria-selected','false'); });
+      panels.forEach(function(p){ p.classList.remove('active'); });
+      tab.classList.add('active');
+      tab.setAttribute('aria-selected','true');
+      document.getElementById('panel-' + tab.dataset.panel).classList.add('active');
+    });
+  });
+
+  // Fade-up on scroll
+  var faders = document.querySelectorAll('.fade-up');
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          entry.target.classList.add('in-view');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold:0.15 });
+    faders.forEach(function(el){ io.observe(el); });
+  } else {
+    faders.forEach(function(el){ el.classList.add('in-view'); });
+  }
+})();
+</script>
+</body>
+</html>
