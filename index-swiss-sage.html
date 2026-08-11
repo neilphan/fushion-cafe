@@ -227,6 +227,7 @@
   }
   .hero-overlay{
     position:absolute; inset:0;
+    pointer-events:none;
     background:
       linear-gradient(180deg, rgba(15,14,10,.55) 0%, rgba(15,14,10,.32) 32%, rgba(15,14,10,.55) 68%, rgba(15,14,10,.92) 100%);
   }
@@ -371,27 +372,23 @@
   .badge p{ margin:0; font-size:14.5px; color:#4d4b40; }
 
   /* ---------- Founders section ---------- */
-  .founders{
-    display:grid;
-    grid-template-columns:1fr;
-    gap:48px;
-    align-items:center;
-  }
+  .founders-head{ max-width:62ch; }
+  .founders-body{ max-width:62ch; }
   .founders-media{
     position:relative;
-    aspect-ratio:4/5;
-    max-width:420px;
-    margin:0 auto;
+    aspect-ratio:21/9;
+    max-width:640px;
+    margin:32px 0;
     border-radius:2px;
     background:var(--paper);
     border:1px solid var(--line);
     display:flex;
-    flex-direction:column;
+    flex-direction:row;
     align-items:center;
     justify-content:center;
-    gap:22px;
-    padding:32px;
-    text-align:center;
+    gap:24px;
+    padding:28px;
+    text-align:left;
   }
   .founders-media::before{
     content:'';
@@ -399,7 +396,7 @@
     border:1px solid var(--line);
     pointer-events:none;
   }
-  .monogram{ width:clamp(120px,22vw,168px); height:auto; }
+  .monogram{ width:clamp(100px,16vw,140px); height:auto; flex:none; }
   .monogram .ring{ fill:none; stroke:var(--wood-deep); stroke-width:1.4; }
   .monogram text{
     font-family:var(--f-display);
@@ -722,9 +719,8 @@
     .menu-grid{ grid-template-columns:1fr 1fr; }
   }
 
-  @media (min-width:900px){
-    .founders{ grid-template-columns:1fr 0.8fr; gap:80px; }
-    .founders-media{ order:2; margin:0; }
+  @media (max-width:560px){
+    .founders-media{ flex-direction:column; text-align:center; padding:26px; aspect-ratio:auto; }
   }
 
   @media (min-width:760px){
@@ -806,7 +802,7 @@
 
 <!-- ================= HERO ================= -->
 <header class="hero" id="top">
-  <video class="hero-media" autoplay muted loop playsinline poster="assets/img/crop-entrance.jpg">
+  <video class="hero-media" id="heroVideo" autoplay muted loop playsinline webkit-playsinline poster="assets/img/crop-entrance.jpg">
     <source src="assets/video/render-2.mp4" type="video/mp4">
   </video>
   <div class="hero-overlay"></div>
@@ -874,9 +870,25 @@
 <!-- ================= FOUNDERS ================= -->
 <section class="section-pad" id="founders">
   <div class="wrap founders">
-    <div class="fade-up">
+    <div class="fade-up founders-head">
       <span class="eyebrow" style="color:var(--wood-deep)"><svg class="dot-enso" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="5.5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>Our Story</span>
       <h2>Two high school sweethearts,<br>one American dream.</h2>
+    </div>
+
+    <div class="founders-media fade-up">
+      <svg class="monogram" viewBox="0 0 160 120" aria-hidden="true">
+        <circle class="ring" cx="66" cy="60" r="46"/>
+        <circle class="ring" cx="98" cy="60" r="46"/>
+        <text x="52" y="68" font-size="30" text-anchor="middle">H</text>
+        <text x="112" y="68" font-size="30" text-anchor="middle">V</text>
+      </svg>
+      <div>
+        <div class="fm-names">Hung Dinh &amp; Van Le</div>
+        <div class="fm-role">Founders, Fushion Café</div>
+      </div>
+    </div>
+
+    <div class="fade-up founders-body">
       <p class="lede">Hung Dinh and Van Le fell for each other back in high school, then set out together to build a new life in Houston, Texas. Somewhere along the way, home cooking became a second language — 100% plant-based, out of both love and conviction. After more than fifteen years perfecting recipes at their own table, they opened Fushion Café to bring that same food, and that same welcome, to the rest of the city.</p>
 
       <blockquote>
@@ -897,19 +909,6 @@
           <span class="fs-num">1</span>
           <span class="fs-label">Love Story, Since High School</span>
         </div>
-      </div>
-    </div>
-
-    <div class="founders-media fade-up">
-      <svg class="monogram" viewBox="0 0 160 120" aria-hidden="true">
-        <circle class="ring" cx="66" cy="60" r="46"/>
-        <circle class="ring" cx="98" cy="60" r="46"/>
-        <text x="52" y="68" font-size="30" text-anchor="middle">H</text>
-        <text x="112" y="68" font-size="30" text-anchor="middle">V</text>
-      </svg>
-      <div>
-        <div class="fm-names">Hung Dinh &amp; Van Le</div>
-        <div class="fm-role">Founders, Fushion Café</div>
       </div>
     </div>
   </div>
@@ -1150,6 +1149,20 @@
 
 <script>
 (function(){
+  // Hero video: force playback on mobile if autoplay was blocked
+  var heroVideo = document.getElementById('heroVideo');
+  if(heroVideo){
+    heroVideo.muted = true;
+    var tryPlay = function(){ var p = heroVideo.play(); if(p && p.catch){ p.catch(function(){}); } };
+    tryPlay();
+    document.addEventListener('visibilitychange', function(){ if(!document.hidden){ tryPlay(); } });
+    ['touchstart','click'].forEach(function(evt){
+      document.addEventListener(evt, function once(){
+        tryPlay();
+      }, { once:true, passive:true });
+    });
+  }
+
   // Nav solid on scroll
   var nav = document.getElementById('siteNav');
   var ring = document.getElementById('progressRing');
